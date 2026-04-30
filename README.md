@@ -8,6 +8,13 @@
 
 ---
 
+### 관련 링크
+[구름 프로젝트 쇼케이스 - Zony](https://deepdive.goorm.io/showcase)
+
+[유튜브 - Zony](https://www.youtube.com/watch?v=5aF3qbJC3hQ)
+
+---
+
 ## 개발 기간
 
 2025.10.19 ~ 2025.11.26
