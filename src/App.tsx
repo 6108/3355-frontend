@@ -19,6 +19,7 @@ import useLoginStore from './stores/useLoginStore'
 import KakaoRedirectPage from './pages/KakaoRedirectPage'
 import useLocationStore from './stores/useLocationStore'
 import ComponentTestPage from './pages/ComponentTestPage'
+import { USE_MOCK, MOCK_LOCATION } from './mocks'
 
 function App() {
   //확인 모달용
@@ -31,6 +32,13 @@ function App() {
 
 
   useEffect(() => {
+    // 목업: 위치 권한 허용 + 노들섬 위치로 고정 (브라우저 위치 팝업 없이 채팅/방 생성 가능)
+    if (USE_MOCK) {
+      setIsAllowed();
+      setLocation(MOCK_LOCATION.lat, MOCK_LOCATION.lon);
+      return;
+    }
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         setIsAllowed();

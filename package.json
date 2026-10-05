@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "node server/index.js"
+    "server": "node server/index.js",
+    "dev:mock": "vite --mode mock",
+    "build:mock": "tsc -b && vite build --mode mock"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "^1.0.1",

@@ -8,11 +8,15 @@ import useLocationStore from "@/stores/useLocationStore";
 import useRoomStore from "@/stores/useRoomStore";
 import type { ChatAPI, RoomAPI } from "@/types/api";
 import { Client } from "@stomp/stompjs";
+import { USE_MOCK, MockStompClient } from "@/mocks";
 import { useQueryClient } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
 import { LngLat } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+// 목업이면 가짜 STOMP 클라이언트, 아니면 진짜
+const StompClient = USE_MOCK ? (MockStompClient as unknown as typeof Client) : Client;
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<ChatAPI[]>([]);
@@ -58,7 +62,7 @@ export default function ChatPage() {
     console.log(payload?.sub || null);
     setUserId(payload?.sub)
 
-    const client = new Client({
+    const client = new StompClient({
       brokerURL: "wss://ws.zony.kro.kr/chat",
       connectHeaders: {
         // Authorization: `Bearer ${tempToken}`,
